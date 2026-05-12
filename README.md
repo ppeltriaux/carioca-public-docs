@@ -13,6 +13,8 @@ Hosted via GitHub Pages at:
 
 - [Privacy Policy](./privacy.html) — submitted to Apple App Store
   Connect as the required Privacy Policy URL.
+- [Support](./support.html) — submitted to ASC as the required
+  Support URL. Light FAQ + contact email.
 
 ## Updating
 
