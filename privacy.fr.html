@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Politique de Confidentialité · Carioca Chile</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 0 1.25rem 4rem;
+      line-height: 1.55;
+      color: #1c1c1e;
+      background: #fafaf7;
+    }
+    @media (prefers-color-scheme: dark) {
+      body { color: #f5f5f7; background: #1c1c1e; }
+      a { color: #4ea4ff; }
+      h1, h2 { border-color: #3a3a3c; }
+    }
+    h1 { font-size: 1.8rem; margin-top: 0; }
+    h2 { font-size: 1.15rem; margin-top: 2rem; border-top: 1px solid #e5e5ea; padding-top: 1rem; }
+    p, li { font-size: 1rem; }
+    code { background: rgba(127, 127, 127, 0.15); padding: 0.1em 0.35em; border-radius: 4px; }
+    .meta { color: #6e6e73; font-size: 0.9rem; margin-bottom: 2rem; }
+    a { color: #007aff; }
+  </style>
+</head>
+<body>
+  <h1>Carioca Chile — Politique de Confidentialité</h1>
+  <p class="meta">Dernière mise à jour : 18 mai 2026</p>
+
+  <p>
+    Carioca Chile (« l'App ») est un jeu de cartes pour iOS développé
+    par Pascal Peltriaux. Cette politique explique quelles données
+    l'App manipule et comment. La version courte : aucun compte,
+    aucune analyse d'usage, aucune publicité, aucun pistage.
+  </p>
+
+  <h2>Ce que nous ne collectons pas</h2>
+  <ul>
+    <li>Aucune adresse e-mail, aucun numéro de téléphone, aucun nom réel.</li>
+    <li>Aucun identifiant publicitaire (IDFA) ni SDK d'analyse tiers.</li>
+    <li>Aucune donnée de localisation.</li>
+    <li>Aucun accès à vos photos, vos contacts, votre micro ou votre caméra.</li>
+    <li>Aucune information de paiement (l'App est actuellement gratuite ; si
+        des fonctions payantes sont ajoutées plus tard, le paiement est
+        géré exclusivement par Apple — nous ne voyons jamais les numéros
+        de carte ni les coordonnées bancaires).</li>
+  </ul>
+
+  <h2>Ce qui reste sur votre appareil (et éventuellement se synchronise sur vos autres appareils Apple)</h2>
+  <p>
+    Les éléments suivants sont stockés localement dans le sandbox de
+    l'App sur votre appareil :
+  </p>
+  <ul>
+    <li>Vos statistiques de jeu (victoires, séries, temps par manche).</li>
+    <li>Vos réglages choisis (thème, langue, difficulté de l'IA,
+        interrupteurs son et vibrations).</li>
+    <li>L'état de la partie solo (face à l'IA) en cours, pour que vous
+        puissiez reprendre après avoir fermé l'App.</li>
+  </ul>
+  <p>
+    Si vous êtes connecté à iCloud sur votre appareil et que
+    l'interrupteur « Sync iCloud » est activé (il l'est par défaut),
+    ces données sont également répliquées dans l'iCloud Key-Value
+    Store d'Apple pour rester cohérentes entre vos autres appareils
+    Apple utilisant le même Apple ID. Les données sont stockées dans
+    votre compte iCloud personnel, géré par Apple — le développeur de
+    Carioca ne les reçoit pas, ne les voit pas et ne les stocke pas,
+    et elles ne sont transmises à aucun tiers. Vous pouvez désactiver
+    la synchronisation iCloud à tout moment depuis le menu ⋯ dans le
+    jeu ; votre copie iCloud existante reste en place, ce qui permet
+    de la restaurer plus tard en réactivant l'option.
+  </p>
+  <p>
+    Supprimer l'App de votre appareil supprime la copie locale.
+    Réinitialiser les statistiques depuis l'écran statistiques dans
+    l'App efface également la copie iCloud. Pour effacer toutes les
+    données iCloud associées à l'App sans passer par les commandes
+    intégrées, déconnectez-vous d'iCloud sur votre appareil ou
+    retirez les données de l'App depuis <code>Réglages → [votre nom]
+    → iCloud → Gérer le stockage du compte</code>.
+  </p>
+
+  <h2>Ce qui est envoyé quand vous jouez en ligne</h2>
+  <p>
+    Le multijoueur en ligne utilise Google Firebase Realtime Database.
+    Lorsque vous créez ou rejoignez un salon, les données suivantes
+    sont envoyées à Firebase et partagées avec les autres joueurs du
+    salon :
+  </p>
+  <ul>
+    <li>Un code de salon à 6 caractères que vous choisissez de partager
+        avec les personnes avec qui vous voulez jouer.</li>
+    <li>Un pseudo que vous saisissez en rejoignant (vous pouvez utiliser
+        n'importe quel nom — nous ne demandons jamais un nom légal).</li>
+    <li>L'état de la partie en cours (cartes en jeu, scores, qui doit
+        jouer) tant que le salon est actif.</li>
+  </ul>
+  <p>
+    Ces informations <em>ne</em> sont <em>pas</em> liées à votre Apple
+    ID, à votre adresse e-mail ni à aucun autre identifiant personnel.
+    Elles servent uniquement à maintenir la partie synchronisée entre
+    les appareils du salon, et elles sont supprimées automatiquement
+    quand le salon est abandonné (les salons inactifs depuis plus de
+    24 heures sont nettoyés par un script automatique).
+  </p>
+
+  <h2>Tiers</h2>
+  <p>
+    L'App s'appuie sur Google Firebase Realtime Database pour le
+    multijoueur en ligne. Le traitement par Firebase des données
+    ci-dessus est couvert par
+    <a href="https://firebase.google.com/support/privacy">la
+    documentation de confidentialité de Google</a>. Nous n'utilisons
+    aucun autre service tiers (pas d'analyse, pas de régie publicitaire,
+    pas de remontée de plantages au-delà des diagnostics natifs
+    d'Apple, qui sont opt-in).
+  </p>
+
+  <h2>Confidentialité des mineurs</h2>
+  <p>
+    L'App est classée 4+ et conçue pour être sans danger pour les
+    enfants. Nous ne collectons sciemment aucune information personnelle
+    d'enfants. Le pseudo qu'un enfant saisit pour le multijoueur peut
+    être n'importe quel surnom — nous encourageons les enfants et leurs
+    parents à choisir un nom qui ne révèle pas l'identité réelle.
+  </p>
+
+  <h2>Vos droits</h2>
+  <p>
+    Comme nous ne stockons aucune donnée personnelle sur un serveur,
+    il n'y a rien à demander, corriger ou supprimer côté serveur. Si
+    vous voulez effacer toutes les données locales, supprimez l'App
+    de votre appareil. Si vous voulez qu'un salon multijoueur soit
+    supprimé avant le nettoyage à 24 heures, contactez-nous à
+    l'adresse ci-dessous.
+  </p>
+
+  <h2>Modifications de cette politique</h2>
+  <p>
+    Si cette politique change de manière significative, la nouvelle
+    version sera publiée à cette URL avec une date mise à jour en
+    haut, et signalée dans les notes de mise à jour de l'App
+    introduisant le changement.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Pour toute question sur cette politique ou sur l'App, écrivez à
+    <a href="mailto:pascal@peltriaux.fr">pascal@peltriaux.fr</a>.
+  </p>
+</body>
+</html>
