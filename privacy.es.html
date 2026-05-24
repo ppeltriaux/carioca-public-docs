@@ -30,7 +30,7 @@
 </head>
 <body>
   <h1>Carioca Chile — Política de Privacidad</h1>
-  <p class="meta">Última actualización: 18 de mayo de 2026</p>
+  <p class="meta">Última actualización: 25 de mayo de 2026</p>
 
   <p>
     Carioca Chile (la «App») es una aplicación de juego de cartas para iOS
@@ -44,10 +44,16 @@
     <li>Ningún correo electrónico, número de teléfono o nombre real.</li>
     <li>Ningún identificador publicitario (IDFA) ni SDK de analítica de terceros.</li>
     <li>Ningún dato de ubicación.</li>
-    <li>Ningún acceso a tus fotos, contactos, micrófono o cámara.</li>
-    <li>Ninguna información de pago (la App es gratuita; si se añaden funciones
-        de pago más adelante, el cobro lo gestiona exclusivamente Apple — nunca
-        vemos números de tarjeta ni datos bancarios).</li>
+    <li>Ningún acceso a la fototeca, contactos, micrófono o cámara de tu
+        dispositivo. (Si tienes una foto de perfil en Game Center, la App
+        puede mostrarla en el chip de tu oponente y compartirla con los
+        otros jugadores de una sala multijugador — consulta la sección
+        «Game Center» más abajo.)</li>
+    <li>Ninguna información de pago más allá de lo que gestiona Apple
+        para las compras dentro de la App. La opción Desbloqueo
+        Completo es una compra única, no consumible, procesada
+        íntegramente por Apple — nunca vemos números de tarjeta ni
+        datos bancarios.</li>
   </ul>
 
   <h2>Lo que se queda en tu dispositivo (y opcionalmente se sincroniza a tus otros dispositivos Apple)</h2>
@@ -83,6 +89,48 @@
     Gestionar almacenamiento de la cuenta</code>.
   </p>
 
+  <h2>Game Center</h2>
+  <p>
+    La App se integra con Apple Game Center para registrar tu
+    progreso en una tabla de líderes compartida, desbloquear logros y
+    mostrar las fotos de perfil de tus oponentes en el modo
+    multijugador. Game Center es opcional a nivel de iOS: si no has
+    iniciado sesión en Game Center, ninguna de las funciones de abajo
+    se activa.
+  </p>
+  <ul>
+    <li><strong>Autenticación.</strong> Al abrir la App, se llama a la
+        API estándar de Apple <code>GKLocalPlayer.authenticate</code>.
+        Apple devuelve tu nombre de Game Center y tu identificador de
+        jugador, que la App usa para identificarte en las salas
+        multijugador y para enviar los reportes de logros y
+        puntuaciones.</li>
+    <li><strong>Foto de perfil.</strong> Si tienes una foto en Game
+        Center, la App llama a <code>GKLocalPlayer.loadPhoto</code>
+        para obtenerla. En partidas en solitario la foto solo se usa
+        dentro de la sesión local de tu dispositivo. En multijugador
+        se codifica en base64 y se publica como parte de los datos de
+        la sala en Firebase para que los demás jugadores la vean en
+        sus chips de oponente. La foto se elimina cuando la sala
+        caduca (consulta la sección «Lo que se envía cuando juegas en
+        línea» más abajo).</li>
+    <li><strong>Logros y tablas de líderes.</strong> Al final de cada
+        partida, la App llama a <code>reportAchievement</code> y
+        <code>reportScore</code> en los servidores de Apple para que
+        los desbloqueos y mejores puntuaciones aparezcan en Game
+        Center. Ese intercambio de datos se mantiene dentro de los
+        servicios de Apple y se rige por
+        <a href="https://www.apple.com/legal/privacy/">la política de
+        privacidad de Apple</a>; nosotros no la vemos, almacenamos ni
+        transmitimos a ningún otro sitio.</li>
+  </ul>
+  <p>
+    Para desactivar cualquiera de estas funciones, cierra sesión en
+    Game Center en tu dispositivo (<code>Ajustes → Game Center →
+    Cerrar sesión</code>) o elimina tu foto de Game Center. Eliminar
+    la App también detiene cualquier futuro reporte a Apple.
+  </p>
+
   <h2>Lo que se envía cuando juegas en línea</h2>
   <p>
     El modo multijugador en línea usa Google Firebase Realtime Database.
@@ -94,27 +142,46 @@
         las personas con las que quieres jugar.</li>
     <li>Un nombre que tú introduces al unirte (puede ser cualquier
         sobrenombre — nunca pedimos un nombre legal).</li>
+    <li>Si has iniciado sesión en Game Center, tu foto de perfil de
+        Game Center (consulta «Game Center» arriba).</li>
+    <li>Un identificador anónimo de Firebase Authentication que
+        existe únicamente para aplicar las reglas de acceso por
+        dispositivo en la base de datos de Firebase — no está
+        vinculado a tu Apple ID, a tu identidad de Game Center ni a
+        ninguna otra información personal.</li>
     <li>El estado de la partida en curso (cartas en juego, puntuaciones,
         a quién le toca) mientras la sala esté activa.</li>
   </ul>
   <p>
-    Esta información <em>no</em> se vincula a tu Apple ID, dirección de
-    correo ni a ningún otro identificador personal. Se usa únicamente
-    para mantener la partida sincronizada entre los dispositivos de la
-    sala y se elimina automáticamente cuando la sala se abandona (las
-    salas inactivas durante más de 24 horas las depura un proceso de
-    limpieza automatizado).
+    Esta información se usa únicamente para mantener la partida
+    sincronizada entre los dispositivos de la sala y se elimina
+    automáticamente cuando la sala se abandona (las salas inactivas
+    durante más de 24 horas las depura un proceso de limpieza
+    automatizado).
   </p>
 
   <h2>Terceros</h2>
   <p>
-    La App utiliza Google Firebase Realtime Database para el modo
-    multijugador en línea. El tratamiento por parte de Firebase de los
-    datos mencionados arriba se rige por
-    <a href="https://firebase.google.com/support/privacy">la documentación
-    de privacidad de Google</a>. No utilizamos ningún otro servicio de
-    terceros (sin analítica, sin redes de anuncios, sin informes de
-    fallos más allá de los diagnósticos opcionales integrados de Apple).
+    La App utiliza dos plataformas de terceros:
+  </p>
+  <ul>
+    <li><strong>Apple Game Center</strong> para autenticación, fotos
+        de perfil, logros y tablas de líderes — consulta la sección
+        «Game Center» arriba. Los datos enviados a Game Center se
+        rigen por
+        <a href="https://www.apple.com/legal/privacy/">la política de
+        privacidad de Apple</a>.</li>
+    <li><strong>Google Firebase Realtime Database</strong> para las
+        salas multijugador en línea — consulta la sección «Lo que se
+        envía cuando juegas en línea» arriba. El tratamiento de los
+        datos por parte de Firebase se rige por
+        <a href="https://firebase.google.com/support/privacy">la
+        documentación de privacidad de Google</a>.</li>
+  </ul>
+  <p>
+    No utilizamos ningún otro servicio de terceros — sin analítica,
+    sin redes de anuncios, sin informes de fallos más allá de los
+    diagnósticos opcionales integrados de Apple.
   </p>
 
   <h2>Privacidad de los menores</h2>

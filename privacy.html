@@ -30,7 +30,7 @@
 </head>
 <body>
   <h1>Carioca Chile — Privacy Policy</h1>
-  <p class="meta">Last updated: 18 May 2026</p>
+  <p class="meta">Last updated: 25 May 2026</p>
 
   <p>
     Carioca Chile (the “App”) is an iOS card-game app developed by Pascal
@@ -43,10 +43,15 @@
     <li>No email address, phone number, or real name.</li>
     <li>No advertising identifier (IDFA) and no third-party analytics SDKs.</li>
     <li>No location data.</li>
-    <li>No access to your photos, contacts, microphone, or camera.</li>
-    <li>No payment information (the App is currently free; if paid features
-        are added later, payment is handled exclusively by Apple — we never
-        see card numbers or billing details).</li>
+    <li>No access to your device's photo library, contacts, microphone, or
+        camera. (If you have a Game Center profile photo, the App may
+        display it on your own opponent's chip and share it with other
+        players in a multiplayer room — see the “Game Center” section
+        below.)</li>
+    <li>No payment information beyond what Apple handles for In-App
+        Purchases. The Unlock-Full-Game option is a one-time, non-
+        consumable purchase processed entirely by Apple — we never see
+        card numbers or billing details.</li>
   </ul>
 
   <h2>What stays on your device (and optionally syncs to your other Apple devices)</h2>
@@ -80,6 +85,44 @@
     Account Storage</code>.
   </p>
 
+  <h2>Game Center</h2>
+  <p>
+    The App integrates with Apple Game Center to record progress
+    against a shared leaderboard, unlock achievements, and let you
+    see your opponents' profile photos in multiplayer. Game Center is
+    opt-in at the iOS level: if you are not signed into Game Center,
+    none of the features below activate.
+  </p>
+  <ul>
+    <li><strong>Authentication.</strong> On launch the App calls
+        Apple's standard <code>GKLocalPlayer.authenticate</code> API.
+        Apple returns your Game Center display name and player ID,
+        which the App uses to identify you in multiplayer rooms and to
+        send achievement / score reports.</li>
+    <li><strong>Profile photo.</strong> If you have a Game Center
+        photo, the App calls <code>GKLocalPlayer.loadPhoto</code> to
+        fetch it. In solo games the photo is only used inside your own
+        device session. In multiplayer it is base64-encoded and
+        published as part of the room data on Firebase so the other
+        players in the room see your photo on their opponent chip.
+        The photo is removed when the room expires (see the “What gets
+        sent when you play online” section below).</li>
+    <li><strong>Achievements + leaderboards.</strong> At game end the
+        App calls <code>reportAchievement</code> and
+        <code>reportScore</code> on Apple's servers so unlocks + best
+        scores appear on Game Center. The data flow here is entirely
+        within Apple's services and is governed by
+        <a href="https://www.apple.com/legal/privacy/">Apple's privacy
+        policy</a>; we do not see, store, or transmit it anywhere
+        else.</li>
+  </ul>
+  <p>
+    To opt out of any of the above, sign out of Game Center on your
+    device (<code>Settings → Game Center → Sign Out</code>) or remove
+    your photo from Game Center. Removing the App also stops all
+    further reports to Apple.
+  </p>
+
   <h2>What gets sent when you play online</h2>
   <p>
     Online multiplayer uses Google Firebase Realtime Database. When you
@@ -91,25 +134,44 @@
         you want to play with.</li>
     <li>A display name that you enter when joining (you can use any name —
         we never request a legal name).</li>
+    <li>If you are signed into Game Center, your Game Center profile
+        photo (see “Game Center” above).</li>
+    <li>An anonymous Firebase Authentication identifier that exists
+        only to enforce per-device access rules on the Firebase
+        database — it is not linked to your Apple ID, your Game
+        Center identity, or any other personal information.</li>
     <li>The state of the in-progress game (cards in play, scores, whose
         turn it is) for as long as the room is active.</li>
   </ul>
   <p>
-    This information is <em>not</em> linked to your Apple ID, email address,
-    or any other personal identifier. It is used solely to keep the
-    multiplayer game in sync between the devices in the room and is deleted
-    automatically when the room is abandoned (rooms inactive for more than
-    24 hours are pruned by an automated cleanup job).
+    This information is used solely to keep the multiplayer game in
+    sync between the devices in the room and is deleted automatically
+    when the room is abandoned (rooms inactive for more than 24 hours
+    are pruned by an automated cleanup job).
   </p>
 
   <h2>Third parties</h2>
   <p>
-    The App relies on Google Firebase Realtime Database for online
-    multiplayer. Firebase's handling of the data above is covered by
-    <a href="https://firebase.google.com/support/privacy">Google's privacy
-    documentation</a>. We do not use any other third-party services
-    (no analytics, no ad networks, no crash reporting beyond Apple's
-    built-in opt-in diagnostics).
+    The App relies on two third-party platforms:
+  </p>
+  <ul>
+    <li><strong>Apple Game Center</strong> for authentication, photo
+        sharing, achievements, and leaderboards — see the “Game
+        Center” section above. Data sent to Game Center is handled
+        under
+        <a href="https://www.apple.com/legal/privacy/">Apple's privacy
+        policy</a>.</li>
+    <li><strong>Google Firebase Realtime Database</strong> for online
+        multiplayer rooms — see the “What gets sent when you play
+        online” section above. Firebase's handling of the data is
+        covered by
+        <a href="https://firebase.google.com/support/privacy">Google's
+        privacy documentation</a>.</li>
+  </ul>
+  <p>
+    We do not use any other third-party services — no analytics, no
+    ad networks, no crash reporting beyond Apple's built-in opt-in
+    diagnostics.
   </p>
 
   <h2>Children's privacy</h2>
