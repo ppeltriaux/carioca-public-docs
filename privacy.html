@@ -150,6 +150,28 @@
     are pruned by an automated cleanup job).
   </p>
 
+  <h2>Push notifications (opt-in)</h2>
+  <p>
+    If you opt in via the in-app “Multiplayer activity hints” toggle
+    AND grant iOS push permission, the App uses Apple Push Notification
+    Service (delivered via Google Firebase Cloud Messaging) to alert
+    you when a public multiplayer game is looking for players. The
+    notification only fires when the number of open public rooms
+    transitions from zero to one or more, and never more than once
+    per 12 hours per device.
+  </p>
+  <p>
+    To enable this, the App stores a device-specific Firebase Cloud
+    Messaging token (provided by Apple via Google) alongside your
+    anonymous Firebase Authentication identifier. The token is used
+    solely to deliver these notifications and is automatically
+    removed if the token becomes invalid (for instance after you
+    uninstall the App). You can disable notifications at any time
+    in the in-app Options screen (the single “Multiplayer activity
+    hints” toggle that also hides the in-app activity tile) or in
+    iOS Settings → Notifications → Carioca Chile.
+  </p>
+
   <h2>Third parties</h2>
   <p>
     The App relies on two third-party platforms:
@@ -161,10 +183,11 @@
         under
         <a href="https://www.apple.com/legal/privacy/">Apple's privacy
         policy</a>.</li>
-    <li><strong>Google Firebase Realtime Database</strong> for online
-        multiplayer rooms — see the “What gets sent when you play
-        online” section above. Firebase's handling of the data is
-        covered by
+    <li><strong>Google Firebase</strong> for online multiplayer rooms
+        (Realtime Database) and opt-in push notifications (Cloud
+        Messaging) — see the “What gets sent when you play online”
+        and “Push notifications” sections above. Firebase's handling
+        of the data is covered by
         <a href="https://firebase.google.com/support/privacy">Google's
         privacy documentation</a>.</li>
   </ul>

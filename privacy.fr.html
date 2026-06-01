@@ -164,6 +164,29 @@
     script automatique).
   </p>
 
+  <h2>Notifications push (opt-in)</h2>
+  <p>
+    Si vous activez l'option in-app « Alertes multijoueur » ET
+    accordez la permission de notifications iOS, l'App utilise Apple
+    Push Notification Service (livré via Google Firebase Cloud
+    Messaging) pour vous alerter dès qu'une partie multijoueur
+    publique cherche des joueurs. La notification ne se déclenche
+    que lorsque le nombre de salons publics ouverts passe de zéro à
+    un ou plus, et jamais plus d'une fois toutes les 12 heures par
+    appareil.
+  </p>
+  <p>
+    Pour cela, l'App stocke un jeton Firebase Cloud Messaging
+    spécifique à l'appareil (fourni par Apple via Google) à côté de
+    votre identifiant anonyme Firebase Authentication. Le jeton sert
+    uniquement à délivrer ces notifications et est automatiquement
+    supprimé s'il devient invalide (par exemple si vous désinstallez
+    l'App). Vous pouvez désactiver les notifications à tout moment
+    depuis l'écran Options in-app (le bouton « Alertes multijoueur »
+    qui cache aussi la pastille in-app) ou dans Réglages iOS →
+    Notifications → Carioca Chile.
+  </p>
+
   <h2>Tiers</h2>
   <p>
     L'App s'appuie sur deux plateformes tierces :
@@ -175,11 +198,12 @@
         Game Center sont traitées selon
         <a href="https://www.apple.com/legal/privacy/">la politique de
         confidentialité d'Apple</a>.</li>
-    <li><strong>Google Firebase Realtime Database</strong> pour les
-        salons multijoueurs en ligne — voir la section « Ce qui est
-        envoyé quand vous jouez en ligne » ci-dessus. Le traitement
-        par Firebase des données est couvert par
-        <a href="https://firebase.google.com/support/privacy">la
+    <li><strong>Google Firebase</strong> pour les salons multijoueurs
+        en ligne (Realtime Database) et les notifications push opt-in
+        (Cloud Messaging) — voir les sections « Ce qui est envoyé
+        quand vous jouez en ligne » et « Notifications push »
+        ci-dessus. Le traitement par Firebase des données est couvert
+        par <a href="https://firebase.google.com/support/privacy">la
         documentation de confidentialité de Google</a>.</li>
   </ul>
   <p>

@@ -160,6 +160,29 @@
     automatizado).
   </p>
 
+  <h2>Notificaciones push (opt-in)</h2>
+  <p>
+    Si activas el conmutador in-app «Avisos multijugador» Y concedes
+    el permiso de notificaciones de iOS, la App usa Apple Push
+    Notification Service (entregado vía Google Firebase Cloud
+    Messaging) para avisarte cuando una partida multijugador
+    pública busca jugadores. La notificación solo se envía cuando
+    el número de salas públicas abiertas pasa de cero a uno o más,
+    y nunca más de una vez cada 12 horas por dispositivo.
+  </p>
+  <p>
+    Para habilitarlo, la App almacena un token de Firebase Cloud
+    Messaging específico del dispositivo (proporcionado por Apple
+    vía Google) junto a tu identificador anónimo de Firebase
+    Authentication. El token se usa exclusivamente para entregar
+    estas notificaciones y se elimina automáticamente si deja de
+    ser válido (por ejemplo si desinstalas la App). Puedes
+    desactivar las notificaciones en cualquier momento desde la
+    pantalla de Opciones in-app (el conmutador «Avisos multijugador»
+    que también oculta la pista in-app) o en Ajustes de iOS →
+    Notificaciones → Carioca Chile.
+  </p>
+
   <h2>Terceros</h2>
   <p>
     La App utiliza dos plataformas de terceros:
@@ -171,10 +194,11 @@
         rigen por
         <a href="https://www.apple.com/legal/privacy/">la política de
         privacidad de Apple</a>.</li>
-    <li><strong>Google Firebase Realtime Database</strong> para las
-        salas multijugador en línea — consulta la sección «Lo que se
-        envía cuando juegas en línea» arriba. El tratamiento de los
-        datos por parte de Firebase se rige por
+    <li><strong>Google Firebase</strong> para las salas multijugador
+        en línea (Realtime Database) y para las notificaciones push
+        opt-in (Cloud Messaging) — consulta las secciones «Lo que se
+        envía cuando juegas en línea» y «Notificaciones push» arriba.
+        El tratamiento de los datos por parte de Firebase se rige por
         <a href="https://firebase.google.com/support/privacy">la
         documentación de privacidad de Google</a>.</li>
   </ul>
