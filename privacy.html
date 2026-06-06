@@ -157,8 +157,8 @@
     Service (delivered via Google Firebase Cloud Messaging) to alert
     you when a public multiplayer game is looking for players. The
     notification only fires when the number of open public rooms
-    transitions from zero to one or more, and never more than once
-    per 12 hours per device.
+    transitions from zero to one or more, and is rate-limited so you
+    won't receive these notifications frequently.
   </p>
   <p>
     To enable this, the App stores a device-specific Firebase Cloud
