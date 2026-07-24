@@ -28,7 +28,13 @@ Then: `sudo nginx -t && sudo systemctl reload nginx`
     curl -si https://peltriaux.com/cariocachile/d/AAAAAAAAAAAA | head -5   # → 200 HTML (duel invite)
     curl -si https://peltriaux.com/cariocachile/j/test-code | head -5      # → 200 HTML (join invite)
 
-## 4. App-side prerequisites (carioca2 repo)
+## 4. App-side prerequisites (carioca2 repo) — DO THE PORTAL STEP FIRST
+
+**Ordering matters:** the portal capability must be enabled BEFORE any
+build — a sideload or EAS build signs against the provisioning profile,
+which fails ("profile doesn't support the Associated Domains
+capability") until the App ID has the capability + the profile is
+refreshed. Same failure mode as the Game Center capability dance.
 
 - `applinks:peltriaux.com` entitlement (shipped with the universal-links build)
 - ONE-TIME: Apple Developer portal → Identifiers → com.carioca.game →
