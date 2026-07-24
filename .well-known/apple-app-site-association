@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["NP9FPYJ2LR.com.carioca.game"],
+        "components": [
+          { "/": "/cariocachile/d/*" },
+          { "/": "/cariocachile/j/*" }
+        ]
+      }
+    ]
+  }
+}
