@@ -16,10 +16,45 @@ invite pages so the URL Apple matched stays in the bar:
     location = /.well-known/apple-app-site-association {
         default_type application/json;
     }
-    location ~ ^/cariocachile/d/ { rewrite ^ /cariocachile/duel-invite.html last; }
-    location ~ ^/cariocachile/j/ { rewrite ^ /cariocachile/join-invite.html last; }
+    location ^~ /cariocachile/d/ { rewrite ^ /cariocachile/duel-invite.html last; }
+    location ^~ /cariocachile/j/ { rewrite ^ /cariocachile/join-invite.html last; }
 
 Then: `sudo nginx -t && sudo systemctl reload nginx`
+
+### Use `^~` prefixes, NOT regex (this bit was wrong for two weeks)
+
+The original version of this doc used **regex** locations
+(`location ~ ^/cariocachile/d/`) and asserted that "regex beats prefix,
+so in-file order doesn't matter". That is only true for **plain** prefix
+locations. nginx's actual precedence is:
+
+1. `location =` — exact match, wins outright
+2. `location ^~ …` — prefix, longest match; **if it wins, regex is skipped entirely**
+3. `location ~ …` — regex, first match in file order
+4. `location /…` — plain prefix, longest match (fallback)
+
+The server block already has a `/cariocachile/` location with
+`try_files $uri $uri/ =404`. With `^~` on it, that beats the regexes and
+returns 404 before they are ever consulted — which is exactly what
+happened: `/d/` and `/j/` 404'd from 2026-07-24 to 2026-08-07 while the
+AASA (an exact `=` match, priority 1) worked fine the whole time.
+
+**Longer `^~` prefixes are immune** — longest-prefix-wins among prefix
+locations, so `^~ /cariocachile/d/` beats `^~ /cariocachile/` whether or
+not the parent carries the modifier, and no regex is involved.
+
+**To repair an existing install:** `sudo bash fix-nginx-universal-links.sh`
+— idempotent, converts the old regex blocks in place (or inserts the set
+if never patched), prints a diagnosis of whether the parent really is
+`^~`, backs up, runs `nginx -t` before reloading, restores on failure,
+then curls all three URLs. `update-nginx-universal-links.sh` is the
+original v1 and is superseded by it.
+
+**Diagnosing remotely, without SSH:** check the AASA's response header.
+`Content-Type: application/json` proves the patch block is live in the
+serving server block (a bare file would serve 200 with a default type),
+so a 404 on `/d/` alongside a JSON-typed AASA points at precedence, not
+at a missing or misplaced patch.
 
 ## 3. Verify
 
