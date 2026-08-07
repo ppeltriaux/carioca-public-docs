@@ -16,45 +16,58 @@ invite pages so the URL Apple matched stays in the bar:
     location = /.well-known/apple-app-site-association {
         default_type application/json;
     }
-    location ^~ /cariocachile/d/ { rewrite ^ /cariocachile/duel-invite.html last; }
-    location ^~ /cariocachile/j/ { rewrite ^ /cariocachile/join-invite.html last; }
+    location /cariocachile/d/ { try_files $uri /cariocachile/duel-invite.html; }
+    location /cariocachile/j/ { try_files $uri /cariocachile/join-invite.html; }
 
 Then: `sudo nginx -t && sudo systemctl reload nginx`
 
-### Use `^~` prefixes, NOT regex (this bit was wrong for two weeks)
+**FIXED 2026-08-08** — `/d/` and `/j/` had 404'd since the 2026-07-24
+deploy. `sudo bash fix-nginx-universal-links.sh` applies the above;
+`update-nginx-universal-links.sh` (v1) is superseded — do not re-run it.
 
-The original version of this doc used **regex** locations
-(`location ~ ^/cariocachile/d/`) and asserted that "regex beats prefix,
-so in-file order doesn't matter". That is only true for **plain** prefix
-locations. nginx's actual precedence is:
+### Why it was broken for two weeks: the patch never applied
 
-1. `location =` — exact match, wins outright
-2. `location ^~ …` — prefix, longest match; **if it wins, regex is skipped entirely**
-3. `location ~ …` — regex, first match in file order
-4. `location /…` — plain prefix, longest match (fallback)
+v1 located its target with `grep -q "location /cariocachile/"` — but
+**this config has no such location**. `/cariocachile/` is served by the
+catch-all `location / { try_files $uri $uri/ =404; }` out of
+`root /var/www/peltriaux`. So v1 exited with "ERROR: no nginx config
+with 'location /cariocachile/' found", changed nothing, and nobody
+noticed. Real files (`/cariocachile/`, `duel-invite.html`) kept working
+because the catch-all serves them; `/d/<id>` is not a file, so it 404'd.
 
-The server block already has a `/cariocachile/` location with
-`try_files $uri $uri/ =404`. With `^~` on it, that beats the regexes and
-returns 404 before they are ever consulted — which is exactly what
-happened: `/d/` and `/j/` 404'd from 2026-07-24 to 2026-08-07 while the
-AASA (an exact `=` match, priority 1) worked fine the whole time.
+**Two theories were investigated and both were WRONG** — recorded so
+nobody re-treads them:
 
-**Longer `^~` prefixes are immune** — longest-prefix-wins among prefix
-locations, so `^~ /cariocachile/d/` beats `^~ /cariocachile/` whether or
-not the parent carries the modifier, and no regex is involved.
+- *"the patch landed in the wrong server block"* — no, it landed nowhere.
+- *"a `^~ /cariocachile/` prefix shadows the regex locations"* — no.
+  There are no regex locations in the file, and no `^~` anywhere in it.
 
-**To repair an existing install:** `sudo bash fix-nginx-universal-links.sh`
-— idempotent, converts the old regex blocks in place (or inserts the set
-if never patched), prints a diagnosis of whether the parent really is
-`^~`, backs up, runs `nginx -t` before reloading, restores on failure,
-then curls all three URLs. `update-nginx-universal-links.sh` is the
-original v1 and is superseded by it.
+What made the second theory persuasive: the AASA returns
+`Content-Type: application/json`, which looked like proof the patch
+block was live in the serving block. It wasn't — that block had been
+added **by hand** (its comment reads "(optional, belt-and-suspenders)",
+not v1's wording). **A response header can prove a RESULT without
+proving its CAUSE.** Only reading the actual config settled it.
 
-**Diagnosing remotely, without SSH:** check the AASA's response header.
-`Content-Type: application/json` proves the patch block is live in the
-serving server block (a bare file would serve 200 with a default type),
-so a 404 on `/d/` alongside a JSON-typed AASA points at precedence, not
-at a missing or misplaced patch.
+### The pattern to copy
+
+Plain prefix + `try_files` fallback, mirroring the belote invite flow
+already working in the same server block:
+
+    location /beloteetrebelote/join/ { try_files $uri /beloteetrebelote/join.html; }
+
+A real file under the prefix still wins; anything else falls back to the
+invite page. No regex and no `^~` needed — a longer plain prefix already
+beats `location /`.
+
+### Verifying after a reload — wait for the workers
+
+`systemctl reload nginx` returns **before** the new workers serve
+traffic. On 2026-08-08 the script's own curl printed `duel page: 404`
+while the same request from off-box already returned 200, and a re-run
+seconds later was 200 locally too. The script now polls up to 10s before
+reporting. **Don't trust a verification curl fired immediately after a
+reload.**
 
 ## 3. Verify
 
