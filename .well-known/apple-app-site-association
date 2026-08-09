@@ -2,10 +2,29 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["NP9FPYJ2LR.com.carioca.game"],
+        "appIDs": [
+          "NP9FPYJ2LR.com.carioca.game"
+        ],
         "components": [
-          { "/": "/cariocachile/d/*" },
-          { "/": "/cariocachile/j/*" }
+          {
+            "/": "/cariocachile/d/*"
+          },
+          {
+            "/": "/cariocachile/j/*"
+          }
+        ]
+      },
+      {
+        "appIDs": [
+          "NP9FPYJ2LR.com.ppeltriaux.beloteetrebelote"
+        ],
+        "components": [
+          {
+            "/": "/beloteetrebelote/join/*"
+          },
+          {
+            "/": "/beloteetrebelote/duel/*"
+          }
         ]
       }
     ]

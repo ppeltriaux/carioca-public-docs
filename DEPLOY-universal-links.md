@@ -1,9 +1,50 @@
 # Universal links — deploy (one-time + on change)
 
+## 0. ⚠ THE AASA IS SHARED — THIS REPO OWNS IT FOR ALL APPS
+
+Apple allows exactly **one** `apple-app-site-association` per DOMAIN, not per
+app. `peltriaux.com` hosts two apps, so both must be listed as entries in the
+same file:
+
+- Carioca Chile — `com.carioca.game` → `/cariocachile/d/*`, `/cariocachile/j/*`
+- Belote et Rebelote — `com.ppeltriaux.beloteetrebelote` → `/beloteetrebelote/join/*`, `/beloteetrebelote/duel/*`
+
+**This repo is the canonical source of that merged file.** Belote keeps a
+mirror at `belote-rebelote/marketing/web/.well-known/`; if the two ever
+disagree, this one wins.
+
+**What went wrong on 2026-07-24:** step 1's `rsync` pushed a Carioca-only
+version and deleted Belote's entry. Belote's invite links were dead for 16
+days — no error, no alert; taps just opened Safari instead of the app.
+Nothing in the deploy surfaced it. It is symmetrical: a Belote-only push
+breaks Carioca the same way.
+
+**Before syncing**, diff what you're about to push against what is live:
+
+    curl -s https://peltriaux.com/.well-known/apple-app-site-association | python3 -m json.tool
+    python3 -m json.tool .well-known/apple-app-site-association
+
+Every `appIDs` entry that is live must still be present in yours.
+
+**After syncing**, prove both apps still resolve — all three must be 200:
+
+    curl -sI https://peltriaux.com/.well-known/apple-app-site-association | head -3
+    curl -s -o /dev/null -w 'carioca %{http_code}\n' https://peltriaux.com/cariocachile/j/TEST
+    curl -s -o /dev/null -w 'belote  %{http_code}\n' https://peltriaux.com/beloteetrebelote/join/ABCDEF
+    curl -s -o /dev/null -w 'duel    %{http_code}\n' https://peltriaux.com/beloteetrebelote/duel/ABCDEFGHJKLM
+
+The AASA must serve `application/json` with **no redirect**. Apple caches it,
+so a bad push is slow to undo.
+
+A cron on the Pi (`belote-aasa-guard`, owned by the Belote project) re-merges
+Belote's entry within ~10 minutes if it ever goes missing. It is a safety net,
+not a licence to skip step 0 — it cannot know about a Carioca entry you drop.
+
 ## 1. Sync files to the Pi
 
     # from this repo's root
     rsync -avz cariocachile/ pascal@10.254.254.2:/var/www/peltriaux/cariocachile/
+    # NOTE: this overwrites the SHARED AASA — do step 0 first, every time.
     rsync -avz .well-known pascal@10.254.254.2:/var/www/peltriaux/
 
 ## 2. nginx (one-time, on the Pi — sudo)
