@@ -42,10 +42,44 @@ not a licence to skip step 0 — it cannot know about a Carioca entry you drop.
 
 ## 1. Sync files to the Pi
 
-    # from this repo's root
+    # from this repo's root — the ONLY line a routine deploy needs
     rsync -avz cariocachile/ pascal@10.254.254.2:/var/www/peltriaux/cariocachile/
-    # NOTE: this overwrites the SHARED AASA — do step 0 first, every time.
+
+**Do NOT sync `.well-known` as part of a normal deploy.** It holds the AASA,
+which is **shared with Belote et Rebelote** — one file per DOMAIN, not per
+app — so pushing this repo's copy overwrites theirs. That is exactly how
+Belote's Universal Links died for 16 days from 2026-07-24, and the failure is
+silent: taps just open Safari.
+
+The line above never touches `.well-known`, so a routine deploy is safe **by
+construction** rather than by remembering. Push the AASA only when its content
+genuinely changes (e.g. a new path component), and then do step 0's diff first
+and verify BOTH apps afterwards:
+
+    # deliberate, rare — never routine
     rsync -avz .well-known pascal@10.254.254.2:/var/www/peltriaux/
+    curl -s https://peltriaux.com/.well-known/apple-app-site-association \
+      | python3 -c "import json,sys;print([e.get('appIDs') for e in json.load(sys.stdin)['applinks']['details']])"
+    # ^ MUST list com.carioca.game AND com.ppeltriaux.beloteetrebelote
+
+### Safety net: Carioca's AASA guard (installed 2026-08-09)
+
+`scripts/aasa-guard.sh` runs on the Pi every 10 minutes (cron tag
+`carioca-aasa-guard`, schedule `5-59/10`, offset from Belote's `*/10`) and
+re-appends Carioca's entry if it disappears, preserving every other app's
+entry byte-for-byte. Belote runs the mirror-image guard; both take the same
+`/tmp/peltriaux-aasa.lock`, so two simultaneous repairs cannot have one
+overwrite the other.
+
+    scripts/install-aasa-guard.sh              # install / update (idempotent)
+    scripts/install-aasa-guard.sh --remove     # uninstall
+    scripts/aasa-guard.sh --check-only         # report, never write
+
+**It is a net, not a control.** It only knows about Carioca — if a *Carioca*
+push drops *Belote's* entry, this guard will not notice, and vice versa. Not
+syncing `.well-known` is the actual fix; the guard only means a mistake costs
+minutes instead of weeks. Apple also CDN-caches the AASA, so a repair does not
+instantly revive already-installed apps.
 
 ## 2. nginx (one-time, on the Pi — sudo)
 
