@@ -6,6 +6,12 @@
   <meta name="theme-color" content="#0c1b4a" />
   <title>Carioca Chile — le rami chilien pour iPhone et iPad</title>
   <meta name="description" content="Le rami chilien classique en 9 manches pour iPhone et iPad. Jouez en solo, en ligne, à proximité ou à tour de rôle. Défis quotidiens, duels, sans publicité." />
+  <link rel="canonical" href="https://peltriaux.com/cariocachile/fr.html" />
+  <link rel="alternate" hreflang="en" href="https://peltriaux.com/cariocachile/" />
+  <link rel="alternate" hreflang="es" href="https://peltriaux.com/cariocachile/es.html" />
+  <link rel="alternate" hreflang="fr" href="https://peltriaux.com/cariocachile/fr.html" />
+  <link rel="alternate" hreflang="pt-BR" href="https://peltriaux.com/cariocachile/pt.html" />
+  <link rel="alternate" hreflang="x-default" href="https://peltriaux.com/cariocachile/" />
   <meta property="og:title" content="Carioca Chile" />
   <meta property="og:description" content="Le rami chilien classique, pour iPhone et iPad." />
   <meta property="og:image" content="https://peltriaux.com/cariocachile/assets/hero.png" />
@@ -47,6 +53,10 @@
     .demo-video { display: block; width: 100%; max-width: 300px; margin: 0 auto 1.75rem; border-radius: 28px; border: 1px solid var(--rule); background: var(--navy-2); aspect-ratio: 886 / 1920; }
     footer { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 3rem; border-top: 1px solid var(--rule); text-align: center; color: var(--ink-mute); font-size: 0.85rem; }
     footer .links { margin: 0.75rem 0; } footer .links a { margin: 0 0.4rem; color: var(--gold); } footer .copy { color: var(--ink-mute); }
+    .chip { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--gold); color: var(--gold); background: transparent; padding: 0.9rem 1.5rem; border-radius: 999px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: background 0.12s ease; }
+    .chip:hover { background: rgba(255,213,107,0.10); text-decoration: none; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+    @media (min-width: 760px) { .cta-row { justify-content: flex-start; } }
   </style>
 </head>
 <body>
@@ -65,7 +75,10 @@
       <div class="hero-text">
         <h1>Carioca Chile</h1>
         <p class="tagline">Le rami chilien classique, désormais sur iPhone et iPad.</p>
-        <a class="cta" href="https://apps.apple.com/app/id6767458601">Téléchargez sur l'App Store</a>
+        <div class="cta-row">
+          <a class="cta" href="https://apps.apple.com/app/id6767458601">Téléchargez sur l'App Store</a>
+          <a class="chip" href="/cariocachile/rules.fr.html">Comment jouer</a>
+        </div>
         <small class="price-note">Gratuit avec déblocage optionnel à 2,99 $ · le multijoueur en ligne et à proximité reste toujours gratuit.</small>
       </div>
       <div class="hero-visual">
@@ -84,6 +97,7 @@
         Une partie dure 20 à 40 min et récompense aussi bien la chance
         au début que la patience en fin de jeu.
       </p>
+      <p style="margin-top:1rem;"><a href="/cariocachile/rules.fr.html">Lire les règles complètes →</a></p>
     </section>
 
     <section>
@@ -170,6 +184,8 @@
       <a href="/cariocachile/pt.html">Português</a>
     </nav>
     <p class="links">
+      <a href="/cariocachile/rules.fr.html">Comment jouer</a>
+      ·
       <a href="https://ppeltriaux.github.io/carioca-public-docs/privacy.fr.html">Confidentialité</a>
       ·
       <a href="mailto:dev@peltriaux.com">Support</a>

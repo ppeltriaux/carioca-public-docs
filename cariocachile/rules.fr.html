@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c1b4a" />
+  <title>Comment jouer au Carioca — règles complètes · Carioca Chile</title>
+  <meta name="description" content="Les règles complètes du Carioca, le jeu de cartes chilien : les neuf manches, brelans et suites, jokers, score et comment terminer." />
+  <link rel="canonical" href="https://peltriaux.com/cariocachile/rules.fr.html" />
+  <link rel="alternate" hreflang="en" href="https://peltriaux.com/cariocachile/rules.html" />
+  <link rel="alternate" hreflang="es" href="https://peltriaux.com/cariocachile/rules.es.html" />
+  <link rel="alternate" hreflang="fr" href="https://peltriaux.com/cariocachile/rules.fr.html" />
+  <link rel="alternate" hreflang="pt-BR" href="https://peltriaux.com/cariocachile/rules.pt.html" />
+  <link rel="alternate" hreflang="x-default" href="https://peltriaux.com/cariocachile/rules.html" />
+  <meta property="og:title" content="Comment jouer au Carioca — règles complètes" />
+  <meta property="og:description" content="Les règles complètes du Carioca, le jeu de cartes chilien : les neuf manches, brelans et suites, jokers, score et comment terminer." />
+  <meta property="og:image" content="https://peltriaux.com/cariocachile/assets/hero.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://peltriaux.com/cariocachile/rules.fr.html" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230c1b4a'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' fill='%23ffd56b' font-family='system-ui'%3ECC%3C/text%3E%3C/svg%3E" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy: #0c1b4a; --navy-2: #1a2f6b; --gold: #ffd56b; --ink: #f5f5f7; --ink-soft: rgba(245,245,247,0.72); --ink-mute: rgba(245,245,247,0.48); --rule: rgba(255,213,107,0.18); }
+    html { -webkit-text-size-adjust: 100%; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif; background: var(--navy); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    a { color: var(--gold); text-decoration: none; } a:hover { text-decoration: underline; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid var(--rule); }
+    .brand { font-weight: 700; letter-spacing: 0.02em; color: var(--gold); }
+    .brand:hover { text-decoration: none; }
+    .langnav { display: flex; gap: 0.6rem; font-size: 0.85rem; }
+    .langnav a { color: var(--ink-soft); text-decoration: none; }
+    .langnav a.active { color: var(--gold); font-weight: 600; }
+    .page-head { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem 1rem; }
+    .page-head h1 { font-size: clamp(2rem, 5.5vw, 3rem); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.9rem; }
+    .lede { font-size: clamp(1.02rem, 2.2vw, 1.15rem); color: var(--ink-soft); max-width: 62ch; }
+    section { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+    section + section { border-top: 1px solid var(--rule); }
+    section h2 { font-size: clamp(1.3rem, 3.2vw, 1.75rem); letter-spacing: -0.01em; margin-bottom: 0.9rem; color: var(--ink); }
+    section p { color: var(--ink-soft); max-width: 62ch; }
+    section p + p { margin-top: 0.9rem; }
+    section ul, section ol { color: var(--ink-soft); max-width: 62ch; margin: 0.9rem 0 0 1.2rem; }
+    section li { margin-bottom: 0.55rem; }
+    section li strong { color: var(--ink); }
+    .note { background: var(--navy-2); border: 1px solid var(--rule); border-radius: 14px; padding: 1rem 1.15rem; margin-top: 1.4rem; font-size: 0.9rem; color: var(--ink-soft); max-width: 62ch; }
+    .table-wrap { overflow-x: auto; margin-top: 1.1rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.94rem; min-width: 380px; }
+    th, td { text-align: left; padding: 0.62rem 0.7rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+    th { color: var(--gold); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    td { color: var(--ink-soft); }
+    td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+    .cta { display: inline-flex; align-items: center; gap: 0.55rem; background: var(--gold); color: var(--navy); padding: 0.95rem 1.6rem; border-radius: 999px; font-weight: 700; font-size: 1rem; text-decoration: none; box-shadow: 0 10px 28px rgba(255,213,107,0.22); transition: transform 0.12s ease, box-shadow 0.12s ease; margin-top: 1.2rem; }
+    .cta:hover { transform: translateY(-1px); box-shadow: 0 14px 32px rgba(255,213,107,0.32); text-decoration: none; }
+    footer { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 3rem; border-top: 1px solid var(--rule); text-align: center; color: var(--ink-mute); font-size: 0.85rem; }
+    footer .links { margin: 0.75rem 0; } footer .links a { margin: 0 0.4rem; color: var(--gold); } footer .copy { color: var(--ink-mute); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/cariocachile/fr.html">Carioca Chile</a>
+    <nav class="langnav" aria-label="Langues">
+      <a href="/cariocachile/rules.html">EN</a>
+      <a href="/cariocachile/rules.es.html">ES</a>
+      <a href="/cariocachile/rules.fr.html" class="active">FR</a>
+      <a href="/cariocachile/rules.pt.html">PT</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-head">
+      <h1>Comment jouer au Carioca</h1>
+      <p class="lede">Le Carioca est un jeu de cartes chilien pour deux à sept joueurs. Au fil de neuf manches — chacune avec son propre objectif — vous courez pour poser vos combinaisons et finir avec le score le plus bas. Voici les règles complètes.</p>
+    </div>
+
+    <section>
+      <h2>Ce qu'il vous faut</h2>
+      <p><strong>De deux à sept joueurs.</strong> Deux jeux complets — 52 cartes plus deux jokers chacun — à deux ou trois joueurs ; trois jeux à partir de quatre.</p>
+      <p><strong>Douze cartes par joueur</strong>, distribuées au début de chaque manche. Le reste forme la pioche, et une carte est retournée pour ouvrir la défausse.</p>
+      <p><strong>Une coupe pour désigner le donneur</strong> avant la première distribution : chacun tire une carte, la plus haute donne. La donne tourne ensuite à chaque manche.</p>
+    </section>
+
+    <section>
+      <h2>Le but</h2>
+      <p>Au Carioca, c'est le score le plus <em>bas</em> qui gagne : le vainqueur est celui qui a le moins de points à la fin de la dernière manche.</p>
+      <p>Chaque manche a son propre objectif — un ensemble de combinaisons à poser sur la table. Videz votre main et la manche ne vous coûte rien. Les cartes qui vous restent quand un autre joueur termine comptent contre vous.</p>
+    </section>
+
+    <section>
+      <h2>Le déroulement d'un tour</h2>
+      <p>Chaque tour se joue en trois étapes, dans cet ordre :</p>
+      <ol>
+        <li><strong>Tirez une carte</strong> — le dessus de la pioche face cachée ou la carte du dessus de la défausse.</li>
+        <li><strong>Posez, si vous pouvez.</strong> Si votre main contient l'objectif de la manche, posez-le sur la table. Une fois votre objectif posé, vous pouvez aussi ajouter des cartes isolées à n'importe quelle combinaison déjà sur la table — la vôtre ou celle d'un adversaire.</li>
+        <li><strong>Défaussez une carte</strong>, face visible. Votre tour se termine.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Les deux combinaisons</h2>
+      <p>Tous les objectifs du jeu se construisent à partir de deux formes seulement :</p>
+      <ul>
+        <li><strong>Brelan</strong> — trois cartes de même rang, couleurs libres. 7♥ 7♠ 7♣.</li>
+        <li><strong>Suite (escala)</strong> — quatre cartes qui se suivent dans la même couleur : 4♠ 5♠ 6♠ 7♠. Elle est cyclique : V D R A est valide.</li>
+      </ul>
+      <p><strong>Les jokers sont libres</strong> et remplacent n'importe quelle carte manquante — mais un seul joker par combinaison.</p>
+    </section>
+
+    <section>
+      <h2>Les neuf manches</h2>
+      <p>Les manches se jouent dans l'ordre. L'objectif est le même pour tout le monde dans une manche donnée.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Manche</th><th>Objectif</th></tr></thead>
+          <tbody>
+          <tr><td>1</td><td>Deux Brelans</td></tr>
+          <tr><td>2</td><td>Brelan + Suite</td></tr>
+          <tr><td>3</td><td>Deux Suites</td></tr>
+          <tr><td>4</td><td>Trois Brelans</td></tr>
+          <tr><td>5</td><td>Deux Brelans + Suite</td></tr>
+          <tr><td>6</td><td>Deux Suites + Brelan</td></tr>
+          <tr><td>7</td><td>Quatre Brelans</td></tr>
+          <tr><td>8</td><td>Escala Sucia — suite de 13 cartes, couleurs libres</td></tr>
+          <tr><td>9</td><td>Escala Real — suite de 13 cartes, même couleur</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Le Carioca se joue avec des séries de manches différentes selon qui vous l'a appris. Voici la série de neuf manches utilisée par l'application ; les Règles de la maison permettent de modifier les manches spéciales de la fin — désactiver l'Escala Sucia ou l'Escala Real, ou ajouter une Escala de Color optionnelle : une suite de 13 cartes d'une seule couleur, rouge ou noir.</p>
+    </section>
+
+    <section>
+      <h2>Poser son objectif</h2>
+      <p>Vous devez poser l'objectif <em>entier</em> d'un coup — impossible d'en poser la moitié et de finir plus tard. Deux règles de tempo structurent la course :</p>
+      <ul>
+        <li><strong>Vous ne pouvez pas poser à votre premier tour de la manche.</strong> Il faut d'abord accomplir un cycle complet : piocher puis défausser.</li>
+        <li><strong>Le tour où vous posez votre objectif, vous ne pouvez rien étendre d'autre.</strong> Compléter les autres combinaisons commence au tour suivant.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Terminer la manche</h2>
+      <p>Une fois votre objectif posé, vous vous débarrassez des cartes restantes en les ajoutant aux combinaisons déjà sur la table — celles de n'importe qui.</p>
+      <p>Dès que vous jouez votre dernière carte, la manche s'arrête immédiatement. C'est le <strong>Carioca</strong>. Vous marquez zéro ; les autres comptent ce qui leur reste en main.</p>
+    </section>
+
+    <section>
+      <h2>Le score</h2>
+      <p>Seules les cartes restées en main à la fin de la manche comptent — et elles comptent contre vous.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Carte</th><th>Points</th></tr></thead>
+          <tbody>
+          <tr><td>As</td><td>20</td></tr>
+          <tr><td>R, D, V, 10</td><td>10</td></tr>
+          <tr><td>2 à 9</td><td>Valeur faciale</td></tr>
+          <tr><td>Joker</td><td>30</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Les scores s'additionnent sur les neuf manches. Le total le plus bas l'emporte.</p>
+    </section>
+
+    <section>
+      <h2>Quitte ou Double</h2>
+      <p>Une règle optionnelle. Déclarez-la avant votre première pioche de la manche et la mise joue dans les deux sens : terminez la manche et elle vous rapporte <strong>−20</strong> au lieu de zéro ; échouez et votre pénalité est <strong>doublée</strong>.</p>
+    </section>
+
+    <section>
+      <h2>Jouez-y sur iPhone et iPad</h2>
+      <p>Carioca Chile propose les neuf manches contre l'ordinateur ou contre d'autres joueurs — en ligne, à proximité en Wi-Fi local sans aucune connexion internet, ou en passant un seul appareil autour de la table. Un tutoriel et un coach intégrés expliquent la manche sur laquelle vous bloquez.</p>
+      <a class="cta" href="https://apps.apple.com/app/id6767458601">Télécharger sur l'App Store</a>
+      <p class="note">Gratuit avec déblocage optionnel à 2,99 $ · le multijoueur en ligne et à proximité reste toujours gratuit.</p>
+    </section>
+  </main>
+
+  <footer>
+    <nav class="langnav" aria-label="Langues" style="justify-content: center;">
+      <a href="/cariocachile/rules.html">English</a>
+      <a href="/cariocachile/rules.es.html">Español</a>
+      <a href="/cariocachile/rules.fr.html" class="active">Français</a>
+      <a href="/cariocachile/rules.pt.html">Português</a>
+    </nav>
+    <p class="links">
+      <a href="/cariocachile/fr.html">Carioca Chile</a>
+      &middot;
+      <a href="https://ppeltriaux.github.io/carioca-public-docs/privacy.fr.html">Confidentialité</a>
+      &middot;
+      <a href="mailto:dev@peltriaux.com">Assistance</a>
+      &middot;
+      <a href="https://apps.apple.com/app/id6767458601">App Store</a>
+    </p>
+    <p class="copy">&copy; 2026 Pascal Peltriaux &middot; Carioca Chile</p>
+  </footer>
+</body>
+</html>

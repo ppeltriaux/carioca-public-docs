@@ -6,6 +6,12 @@
   <meta name="theme-color" content="#0c1b4a" />
   <title>Carioca Chile — el clásico chileno para iPhone y iPad</title>
   <meta name="description" content="El clásico Carioca chileno de 9 rondas para iPhone y iPad. Juega solo, en línea, cerca por Wi-Fi o por turnos. Desafíos diarios, duelos y más, sin anuncios." />
+  <link rel="canonical" href="https://peltriaux.com/cariocachile/es.html" />
+  <link rel="alternate" hreflang="en" href="https://peltriaux.com/cariocachile/" />
+  <link rel="alternate" hreflang="es" href="https://peltriaux.com/cariocachile/es.html" />
+  <link rel="alternate" hreflang="fr" href="https://peltriaux.com/cariocachile/fr.html" />
+  <link rel="alternate" hreflang="pt-BR" href="https://peltriaux.com/cariocachile/pt.html" />
+  <link rel="alternate" hreflang="x-default" href="https://peltriaux.com/cariocachile/" />
   <meta property="og:title" content="Carioca Chile" />
   <meta property="og:description" content="El clásico Carioca chileno, para iPhone y iPad." />
   <meta property="og:image" content="https://peltriaux.com/cariocachile/assets/hero.png" />
@@ -47,6 +53,10 @@
     .demo-video { display: block; width: 100%; max-width: 300px; margin: 0 auto 1.75rem; border-radius: 28px; border: 1px solid var(--rule); background: var(--navy-2); aspect-ratio: 886 / 1920; }
     footer { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 3rem; border-top: 1px solid var(--rule); text-align: center; color: var(--ink-mute); font-size: 0.85rem; }
     footer .links { margin: 0.75rem 0; } footer .links a { margin: 0 0.4rem; color: var(--gold); } footer .copy { color: var(--ink-mute); }
+    .chip { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--gold); color: var(--gold); background: transparent; padding: 0.9rem 1.5rem; border-radius: 999px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: background 0.12s ease; }
+    .chip:hover { background: rgba(255,213,107,0.10); text-decoration: none; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+    @media (min-width: 760px) { .cta-row { justify-content: flex-start; } }
   </style>
 </head>
 <body>
@@ -65,7 +75,10 @@
       <div class="hero-text">
         <h1>Carioca Chile</h1>
         <p class="tagline">El clásico Carioca chileno, ahora para iPhone y iPad.</p>
-        <a class="cta" href="https://apps.apple.com/app/id6767458601">Descargar en la App Store</a>
+        <div class="cta-row">
+          <a class="cta" href="https://apps.apple.com/app/id6767458601">Descargar en la App Store</a>
+          <a class="chip" href="/cariocachile/rules.es.html">Cómo se juega</a>
+        </div>
         <small class="price-note">Gratis con desbloqueo opcional de $2.99 · el multijugador en línea y cercano siempre es gratis.</small>
       </div>
       <div class="hero-visual">
@@ -83,6 +96,7 @@
         toda la partida. Cada juego dura 20–40 min y premia tanto la
         suerte de apertura como la paciencia en el cierre.
       </p>
+      <p style="margin-top:1rem;"><a href="/cariocachile/rules.es.html">Lee las reglas completas →</a></p>
     </section>
 
     <section>
@@ -169,6 +183,8 @@
       <a href="/cariocachile/pt.html">Português</a>
     </nav>
     <p class="links">
+      <a href="/cariocachile/rules.es.html">Cómo jugar</a>
+      ·
       <a href="https://ppeltriaux.github.io/carioca-public-docs/privacy.es.html">Privacidad</a>
       ·
       <a href="mailto:dev@peltriaux.com">Soporte</a>
