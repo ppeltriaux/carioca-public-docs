@@ -3,11 +3,12 @@
 ## 0. ⚠ THE AASA IS SHARED — THIS REPO OWNS IT FOR ALL APPS
 
 Apple allows exactly **one** `apple-app-site-association` per DOMAIN, not per
-app. `peltriaux.com` hosts two apps, so both must be listed as entries in the
-same file:
+app. `peltriaux.com` hosts three apps, so all three must be listed as entries
+in the same file:
 
 - Carioca Chile — `com.carioca.game` → `/cariocachile/d/*`, `/cariocachile/j/*`
 - Belote et Rebelote — `com.ppeltriaux.beloteetrebelote` → `/beloteetrebelote/join/*`, `/beloteetrebelote/duel/*`
+- Pulse — `com.peltriaux.networktools` → `/pulse/s/*` (added 2026-09-30)
 
 **This repo is the canonical source of that merged file.** Belote keeps a
 mirror at `belote-rebelote/marketing/web/.well-known/`; if the two ever
@@ -26,7 +27,14 @@ breaks Carioca the same way.
 
 Every `appIDs` entry that is live must still be present in yours.
 
-**After syncing**, prove both apps still resolve — all three must be 200:
+**After syncing**, prove every app still resolves. Run the read-only checker
+(it asserts all three app IDs and their paths):
+
+    ~/claude-repos/network-tools/scripts/check-aasa.sh
+    ~/claude-repos/network-tools/scripts/check-aasa.sh --file .well-known/apple-app-site-association   # a local copy, BEFORE publishing
+
+Then confirm the invite pages — all four must be 200 (Pulse's `/pulse/s/*`
+has no web page, so it is not in this list):
 
     curl -sI https://peltriaux.com/.well-known/apple-app-site-association | head -3
     curl -s -o /dev/null -w 'carioca %{http_code}\n' https://peltriaux.com/cariocachile/j/TEST
@@ -54,29 +62,32 @@ silent: taps just open Safari.
 The line above never touches `.well-known`, so a routine deploy is safe **by
 construction** rather than by remembering. Push the AASA only when its content
 genuinely changes (e.g. a new path component), and then do step 0's diff first
-and verify BOTH apps afterwards:
+and verify ALL THREE apps afterwards:
 
     # deliberate, rare — never routine
     rsync -avz .well-known pascal@10.254.254.2:/var/www/peltriaux/
     curl -s https://peltriaux.com/.well-known/apple-app-site-association \
       | python3 -c "import json,sys;print([e.get('appIDs') for e in json.load(sys.stdin)['applinks']['details']])"
-    # ^ MUST list com.carioca.game AND com.ppeltriaux.beloteetrebelote
+    # ^ MUST list com.carioca.game, com.ppeltriaux.beloteetrebelote AND com.peltriaux.networktools
+    #   (or just run network-tools/scripts/check-aasa.sh, which asserts all three)
 
 ### Safety net: Carioca's AASA guard (installed 2026-08-09)
 
 `scripts/aasa-guard.sh` runs on the Pi every 10 minutes (cron tag
 `carioca-aasa-guard`, schedule `5-59/10`, offset from Belote's `*/10`) and
 re-appends Carioca's entry if it disappears, preserving every other app's
-entry byte-for-byte. Belote runs the mirror-image guard; both take the same
+entry byte-for-byte. Belote (`*/10`) and Pulse (`7-59/10`,
+`~/bin/pulse-aasa-guard.sh`) run mirror-image guards; all three take the same
 `/tmp/peltriaux-aasa.lock`, so two simultaneous repairs cannot have one
-overwrite the other.
+overwrite the other. **Any fourth app on this domain must take that lock too.**
 
     scripts/install-aasa-guard.sh              # install / update (idempotent)
     scripts/install-aasa-guard.sh --remove     # uninstall
     scripts/aasa-guard.sh --check-only         # report, never write
 
 **It is a net, not a control.** It only knows about Carioca — if a *Carioca*
-push drops *Belote's* entry, this guard will not notice, and vice versa. Not
+push drops *Belote's* or *Pulse's* entry, this guard will not notice, and
+vice versa. Not
 syncing `.well-known` is the actual fix; the guard only means a mistake costs
 minutes instead of weeks. Apple also CDN-caches the AASA, so a repair does not
 instantly revive already-installed apps.

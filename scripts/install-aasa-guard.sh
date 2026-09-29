@@ -69,6 +69,6 @@ for u in "/.well-known/apple-app-site-association" \
   printf '  %-46s %s\n' "$u" "$(curl -s -o /dev/null -w '%{http_code}' "https://peltriaux.com$u")"
 done
 echo
-echo "BOTH apps must appear below:"
+echo "ALL THREE apps must appear below (Carioca, Belote, Pulse):"
 curl -s https://peltriaux.com/.well-known/apple-app-site-association \
   | python3 -c "import json,sys;print('  ', [e.get('appIDs') for e in json.load(sys.stdin)['applinks']['details']])"

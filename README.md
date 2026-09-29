@@ -13,8 +13,8 @@ Hosted via GitHub Pages at:
 
 `.well-known/apple-app-site-association` here is the **canonical copy of a
 file shared by every app on `peltriaux.com`** (Apple allows one per domain,
-not one per app) — currently Carioca Chile and Belote et Rebelote. Pushing a
-single-app version silently breaks the other app's links; this happened on
+not one per app) — currently Carioca Chile, Belote et Rebelote and Pulse.
+Pushing a copy missing any entry silently breaks that app's links; this happened on
 2026-07-24 and went unnoticed for 16 days. See `DEPLOY-universal-links.md`
 step 0 before touching it.
 

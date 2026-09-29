@@ -5,8 +5,8 @@
 #
 # WHY THIS EXISTS
 # Apple allows exactly one apple-app-site-association per DOMAIN, not per app.
-# peltriaux.com hosts two apps (Carioca Chile + Belote et Rebelote), so both
-# must be entries in one file — and each project deploys its own copy of it.
+# peltriaux.com hosts three apps (Carioca Chile + Belote et Rebelote + Pulse),
+# so all must be entries in one file — and each project deploys its own copy of it.
 # Whoever uploads last wins, and the failure is SILENT: a dropped entry just
 # makes taps open Safari instead of the app. No error, no crash, nothing to
 # alert on. On 2026-07-24 a Carioca deploy dropped Belote's entry and it went
@@ -20,7 +20,7 @@
 #
 # WHAT IT CANNOT DO
 # It only knows about CARIOCA. If a Carioca deploy drops BELOTE's entry, this
-# script will not notice — Belote runs its own guard for that. Neither guard
+# script will not notice — Belote and Pulse run their own guards for that. Neither guard
 # replaces the diff-before-you-push step in each project's runbook; they are
 # safety nets, not the primary control. The primary control for this repo is
 # simply never rsyncing `.well-known` (see DEPLOY-universal-links.md).
@@ -35,7 +35,7 @@
 # ENVIRONMENT (all optional — defaults are the live Pi paths)
 #   AASA_PATH   file to guard   (default /var/www/peltriaux/.well-known/apple-app-site-association)
 #   AASA_LOG    log file        (default $HOME/carioca-aasa-guard.log)
-#   AASA_LOCK   lock path       (default /tmp/peltriaux-aasa.lock — MUST match Belote's)
+#   AASA_LOCK   lock path       (default /tmp/peltriaux-aasa.lock — MUST match Belote's + Pulse's)
 # Point AASA_PATH at a copy to test safely without touching the served file.
 #
 # Install (from this repo, one time):
@@ -52,7 +52,7 @@ set -euo pipefail
 # read-modify-write of the same shared file; without a shared lock, two firing
 # together can each read a broken file, each append only their own entry, and
 # the second write erases the first — recreating the exact bug they exist to
-# prevent. Belote's guard uses this same path; it must not diverge.
+# prevent. Belote's and Pulse's guards use this same path; it must not diverge.
 # (flock is util-linux; absent on macOS, where local fixture tests run.)
 AASA_LOCK="${AASA_LOCK:-/tmp/peltriaux-aasa.lock}"
 if [[ -z "${AASA_LOCKED:-}" ]] && command -v flock >/dev/null 2>&1; then
