@@ -26,6 +26,16 @@
             "/": "/beloteetrebelote/duel/*"
           }
         ]
+      },
+      {
+        "appIDs": [
+          "NP9FPYJ2LR.com.peltriaux.networktools"
+        ],
+        "components": [
+          {
+            "/": "/pulse/s/*"
+          }
+        ]
       }
     ]
   }
