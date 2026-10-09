@@ -30,195 +30,239 @@
 </head>
 <body>
   <h1>Carioca Chile — Privacy Policy</h1>
-  <p class="meta">Last updated: 7 June 2026</p>
+  <p class="meta">Last updated: 10 October 2026</p>
 
   <p>
     Carioca Chile (the “App”) is an iOS card-game app developed by Pascal
     Peltriaux. This policy explains what data the App handles and how.
-    The short version: no accounts, no analytics, no ads, no trackers.
+    The short version: no accounts, no ads, no trackers, no third-party
+    analytics.
   </p>
 
   <h2>What we don't collect</h2>
   <ul>
     <li>No email address, phone number, or real name.</li>
-    <li>No advertising identifier (IDFA) and no third-party analytics SDKs.</li>
+    <li>No advertising identifier (IDFA) and no third-party analytics or
+        advertising SDKs.</li>
     <li>No location data.</li>
     <li>No access to your device's photo library, contacts, microphone, or
         camera. (If you have a Game Center profile photo, the App may
-        display it on your own opponent's chip and share it with other
-        players in a multiplayer room — see the “Game Center” section
-        below.)</li>
-    <li>No payment information beyond what Apple handles for In-App
-        Purchases. The Unlock-Full-Game option is a one-time, non-
-        consumable purchase processed entirely by Apple — we never see
+        show it to the other players in a multiplayer game — see
+        “Game Center” below.)</li>
+    <li>No payment information. The Unlock Full Game option is a one-time,
+        non-consumable purchase processed entirely by Apple — we never see
         card numbers or billing details.</li>
   </ul>
 
   <h2>What stays on your device (and optionally syncs to your other Apple devices)</h2>
-  <p>
-    The following is stored locally in the App's sandbox on your device:
-  </p>
+  <p>The following is stored locally in the App's sandbox on your device:</p>
   <ul>
     <li>Your gameplay statistics (wins, streaks, round times).</li>
-    <li>Your chosen settings (theme, language, AI difficulty, sound and
-        haptics toggles).</li>
-    <li>The in-progress game state for solo (vs CPU) games, so you can
-        resume after closing the App.</li>
+    <li>Your settings (theme, language, AI difficulty, house rules, sound
+        and haptics, the display name you choose).</li>
+    <li>The game in progress for solo, Quick Play and Pass &amp; Play
+        games, so you can resume after closing the App.</li>
+    <li>Your gems, the card finishes you unlocked, daily missions and
+        season progress.</li>
+    <li>Your Daily and Weekly Challenge results and daily streak.</li>
+    <li>The list of duels you created or answered.</li>
   </ul>
   <p>
-    If you are signed into iCloud on your device and the “iCloud sync”
-    toggle is on (it is by default), this data is also mirrored to Apple's
-    iCloud Key-Value Store so it stays consistent across your other Apple
-    devices using the same Apple ID. The data is stored in your personal
-    iCloud account managed by Apple — Carioca's developer does not
-    receive, see, or store it, and it is not transmitted to any third
-    party. You can disable iCloud sync at any time from the in-game ⋯
-    menu; doing so leaves your existing iCloud copy in place so
-    re-enabling later restores it.
+    If you are signed into iCloud and the “iCloud sync” toggle is on (it is
+    by default), most of this data is also mirrored to Apple's iCloud
+    Key-Value Store so it stays consistent across your Apple devices using
+    the same Apple ID. It lives in your personal iCloud account managed by
+    Apple — the developer does not receive, see, or store it, and it is not
+    sent to any third party. You can turn iCloud sync off at any time in
+    Options; your existing iCloud copy stays in place so turning it back on
+    restores it.
   </p>
   <p>
-    Deleting the App from your device deletes the local copy. Resetting
-    statistics from the in-app stats screen also clears the iCloud copy.
-    To wipe all iCloud-stored data for the App without using the in-app
-    controls, sign out of iCloud on your device or remove the App's
-    iCloud data from <code>Settings → [your name] → iCloud → Manage
-    Account Storage</code>.
+    Deleting the App deletes the local copy. Resetting statistics from the
+    in-app stats screen also clears the iCloud copy. To wipe all of the
+    App's iCloud data without the in-app controls, remove it from Settings
+    → [your name] → iCloud → Manage Account Storage.
   </p>
+
+  <h2>Device sensors</h2>
+  <ul>
+    <li><strong>Motion.</strong> On the home screen the fan of cards tilts
+        slightly as you move your phone. The App reads the motion sensor
+        only while that screen is visible; the readings are used on the
+        spot and are never stored or sent anywhere. Turning on iOS Reduce
+        Motion switches this off.</li>
+    <li><strong>iPhone Duo.</strong> On a foldable iPhone the App reads
+        whether the phone is open, half-folded or closed, and where the
+        fold is, so it can lay out the table around it. This is used only
+        on your device and is never stored or sent anywhere.</li>
+  </ul>
 
   <h2>Game Center</h2>
   <p>
-    The App integrates with Apple Game Center to record progress
-    against a shared leaderboard, unlock achievements, and let you
-    see your opponents' profile photos in multiplayer. Game Center is
-    opt-in at the iOS level: if you are not signed into Game Center,
-    none of the features below activate.
+    The App uses Apple Game Center for leaderboards, achievements and
+    opponents' profile photos in multiplayer. Game Center is opt-in at the
+    iOS level: if you are not signed in, none of the following happens.
   </p>
   <ul>
-    <li><strong>Authentication.</strong> On launch the App calls
-        Apple's standard <code>GKLocalPlayer.authenticate</code> API.
-        Apple returns your Game Center display name and player ID,
-        which the App uses to identify you in multiplayer rooms and to
-        send achievement / score reports.</li>
-    <li><strong>Profile photo.</strong> If you have a Game Center
-        photo, the App calls <code>GKLocalPlayer.loadPhoto</code> to
-        fetch it. In solo games the photo is only used inside your own
-        device session. In multiplayer it is base64-encoded and
-        published as part of the room data on Firebase so the other
-        players in the room see your photo on their opponent chip.
-        The photo is removed when the room expires (see the “What gets
-        sent when you play online” section below).</li>
-    <li><strong>Achievements + leaderboards.</strong> At game end the
-        App calls <code>reportAchievement</code> and
-        <code>reportScore</code> on Apple's servers so unlocks + best
-        scores appear on Game Center. The data flow here is entirely
-        within Apple's services and is governed by
+    <li><strong>Sign-in.</strong> On launch the App calls Apple's standard
+        <code>GKLocalPlayer.authenticate</code> API. Apple returns your Game
+        Center display name and player ID, which the App uses to name you
+        in multiplayer games and to send achievement and score
+        reports.</li>
+    <li><strong>Profile photo.</strong> If you have a Game Center photo, the
+        App fetches it with <code>GKLocalPlayer.loadPhoto</code>. In a
+        multiplayer game it is included in the game's data on Firebase so
+        the other players see it next to your name. It is deleted with the
+        game (see “What gets sent when you play online”).</li>
+    <li><strong>Achievements and leaderboards.</strong> When you finish a
+        game or a Daily or Weekly Challenge, the App reports your
+        achievements and scores to Apple so they appear on Game Center.
+        This stays entirely within Apple's services and is governed by
         <a href="https://www.apple.com/legal/privacy/">Apple's privacy
-        policy</a>; we do not see, store, or transmit it anywhere
-        else.</li>
+        policy</a>.</li>
   </ul>
   <p>
-    To opt out of any of the above, sign out of Game Center on your
-    device (<code>Settings → Game Center → Sign Out</code>) or remove
-    your photo from Game Center. Removing the App also stops all
-    further reports to Apple.
+    To opt out, sign out of Game Center (Settings → Game Center → Sign Out)
+    or remove your Game Center photo.
   </p>
 
   <h2>What gets sent when you play online</h2>
   <p>
     Online multiplayer uses Google Firebase Realtime Database. When you
-    create or join a room, the following data is sent to Firebase and shared
-    with the other players in that room:
+    play an online game, the following is sent to Firebase and shared with
+    the other players in that game:
   </p>
   <ul>
-    <li>A 6-character room code that you choose to share with the people
-        you want to play with.</li>
-    <li>A display name that you enter when joining (you can use any name —
-        we never request a legal name).</li>
-    <li>If you are signed into Game Center, your Game Center profile
-        photo (see “Game Center” above).</li>
-    <li>An anonymous Firebase Authentication identifier that exists
-        only to enforce per-device access rules on the Firebase
-        database — it is not linked to your Apple ID, your Game
-        Center identity, or any other personal information.</li>
-    <li>The state of the in-progress game (cards in play, scores, whose
-        turn it is) for as long as the room is active.</li>
+    <li>The game's room code (a short word combination such as
+        “brave-otter-4729”).</li>
+    <li>The display name you choose (any nickname — we never ask for a
+        real name).</li>
+    <li>Your Game Center photo, if you have one, and the avatar frame you
+        have equipped.</li>
+    <li>An anonymous Firebase Authentication identifier, used only to
+        enforce access rules on the database. It is not linked to your
+        Apple ID, your Game Center identity, or any other personal
+        information.</li>
+    <li>The state of the game (cards in play, scores, whose turn it is)
+        and any quick reactions (emoji) you send.</li>
   </ul>
   <p>
-    This information is used solely to keep the multiplayer game in
-    sync between the devices in the room and is deleted automatically
-    when the room is abandoned (rooms inactive for more than 24 hours
-    are pruned by an automated cleanup job).
+    This is used only to keep the game in sync between the players' devices.
+    It is deleted when the game ends; games left inactive for more than 24
+    hours are removed automatically.
+  </p>
+  <p>
+    <strong>The online queue.</strong> When you tap Play online and wait for
+    an opponent, a short entry with your display name, the room code and the
+    time is shown to other players of the App so they can join you. It is
+    removed when the game starts, or within two minutes of you leaving.
+  </p>
+  <p>
+    <strong>“Alert me when a table opens.”</strong> If you choose this, your
+    display name and an expiry time (15, 30 or 60 minutes, your choice) are
+    added to a waiting list that other players of the App can see, so
+    someone can open a table for you. Your entry is removed when you join a
+    game, when you cancel, or when the time runs out.
+  </p>
+
+  <h2>Duels</h2>
+  <p>
+    When you create a duel, your display name, your score and the number
+    that recreates the same deal are stored on Firebase under a random duel
+    ID, together with your anonymous identifier. Anyone you send the duel
+    link to can see them and answer once; their display name and score are
+    added to the duel. Duels are deleted automatically 7 days after they
+    are created.
+  </p>
+
+  <h2>Nearby play (local network)</h2>
+  <p>
+    “Host Nearby Game” and “Join Nearby Game” use Apple's MultipeerConnectivity over local
+    Wi-Fi or Bluetooth. Your display name, avatar frame and the game state
+    go directly to the other devices at the table — nothing goes through
+    the internet or our servers. iOS asks for Local Network permission the
+    first time; you can change it in Settings → Privacy &amp; Security →
+    Local Network.
   </p>
 
   <h2>Push notifications (opt-in)</h2>
   <p>
-    If you opt in via the in-app “Multiplayer activity hints” toggle
-    AND grant iOS push permission, the App uses Apple Push Notification
-    Service (delivered via Google Firebase Cloud Messaging) to alert
-    you when a public multiplayer game is looking for players. The
-    notification only fires when the number of open public rooms
-    transitions from zero to one or more, and is rate-limited so you
-    won't receive these notifications frequently.
+    If you allow notifications and the in-app “Multiplayer hints” option is
+    on, the App may send you:
+  </p>
+  <ul>
+    <li>a hint when someone is waiting for an online game;</li>
+    <li>a notice when someone answers a duel you created;</li>
+    <li>reminders when your daily streak is about to end, when unclaimed
+        season rewards are about to expire, or when you haven't played this
+        week's challenge.</li>
+  </ul>
+  <p>
+    One notification is sent even when Multiplayer hints is off, because
+    you ask for it directly: “your game is ready”, after you choose “Alert
+    me when a table opens”.
   </p>
   <p>
-    To enable this, the App stores a device-specific Firebase Cloud
-    Messaging token (provided by Apple via Google) alongside your
-    anonymous Firebase Authentication identifier. The token is used
-    solely to deliver these notifications and is automatically
-    removed if the token becomes invalid (for instance after you
-    uninstall the App). You can disable notifications at any time
-    in the in-app Options screen (the single “Multiplayer activity
-    hints” toggle that also hides the in-app activity tile) or in
-    iOS Settings → Notifications → Carioca Chile.
+    To deliver them, the App stores a device-specific Firebase Cloud
+    Messaging token with your anonymous identifier, plus the little status
+    needed to decide whether a reminder applies: the date of your last Daily
+    Challenge and your streak length, the current season and how many
+    rewards are waiting, and whether this week's challenge is done. The
+    token is removed automatically if it stops working (for example after
+    you uninstall the App), and hints sent to all players are rate-limited.
+    You can turn notifications off in Options or in iOS Settings →
+    Notifications → Carioca Chile.
+  </p>
+
+  <h2>Anonymous usage counts</h2>
+  <p>
+    Our server counts how many online games start each day, split into
+    public and private games and by how many people played. These counts
+    contain no names, identifiers, or device information and cannot be
+    linked to you.
   </p>
 
   <h2>Third parties</h2>
-  <p>
-    The App relies on two third-party platforms:
-  </p>
+  <p>The App relies on two platforms:</p>
   <ul>
-    <li><strong>Apple Game Center</strong> for authentication, photo
-        sharing, achievements, and leaderboards — see the “Game
-        Center” section above. Data sent to Game Center is handled
-        under
+    <li><strong>Apple</strong> — Game Center, iCloud, In-App Purchases and
+        push delivery, under
         <a href="https://www.apple.com/legal/privacy/">Apple's privacy
         policy</a>.</li>
-    <li><strong>Google Firebase</strong> for online multiplayer rooms
-        (Realtime Database) and opt-in push notifications (Cloud
-        Messaging) — see the “What gets sent when you play online”
-        and “Push notifications” sections above. Firebase's handling
-        of the data is covered by
+    <li><strong>Google Firebase</strong> — Realtime Database for online
+        games, the queue and duels; Cloud Messaging and Cloud Functions for
+        notifications and the daily game counts. Covered by
         <a href="https://firebase.google.com/support/privacy">Google's
         privacy documentation</a>.</li>
   </ul>
   <p>
-    We do not use any other third-party services — no analytics, no
-    ad networks, no crash reporting beyond Apple's built-in opt-in
+    We use no other third-party services — no analytics SDKs, no ad
+    networks, no crash reporting beyond Apple's built-in opt-in
     diagnostics.
   </p>
 
   <h2>Children's privacy</h2>
   <p>
     The App is rated 4+ and intended to be safe for children. We do not
-    knowingly collect any personal information from children. The display
-    name a child enters for multiplayer can be any nickname — we encourage
-    children and their parents to choose a name that doesn't reveal real
+    knowingly collect personal information from children. The display name
+    used in multiplayer and duels can be any nickname — we encourage
+    children and their parents to choose one that doesn't reveal a real
     identity.
   </p>
 
   <h2>Your rights</h2>
   <p>
-    Because we don't store any personal account data, there is nothing to
-    request, correct, or delete on a server. If you want to wipe all local
-    data, delete the App from your device. If you want a multiplayer room
-    deleted before the 24-hour cleanup, contact us at the email below.
+    We don't keep any account data, so there is nothing to request,
+    correct or delete on a server about you. To wipe all local data, delete
+    the App. Online games are removed within 24 hours and duels after 7
+    days; if you want one deleted sooner, write to us at the address below.
   </p>
 
   <h2>Changes to this policy</h2>
   <p>
-    If this policy ever changes materially, the new version will be posted
-    at this URL with an updated date at the top, and called out in the
-    App's release notes for the version that introduces the change.
+    If this policy changes materially, the new version will be posted at
+    this URL with an updated date at the top, and mentioned in the App's
+    release notes for the version that introduces the change.
   </p>
 
   <h2>Contact</h2>
