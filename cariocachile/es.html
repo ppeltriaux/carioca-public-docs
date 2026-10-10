@@ -62,6 +62,18 @@
     .chip-yt { gap: 0.6rem; padding: 0.7rem 1.25rem; font-size: 0.95rem; }
     .chip-yt .yt-mark { flex: 0 0 auto; }
     .video-links { text-align: center; margin: -0.25rem auto 1.75rem; }
+    /* iPhone Duo */
+    .duo { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
+    @media (min-width: 760px) { .duo { grid-template-columns: 1.15fr 1fr; gap: 3rem; } }
+    .duo-eyebrow { display: inline-block; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--rule); border-radius: 999px; padding: 0.25rem 0.7rem; margin-bottom: 0.9rem; }
+    .duo-modes { list-style: none; margin-top: 1.25rem; display: grid; gap: 0.9rem; }
+    .duo-modes li { background: var(--navy-2); border: 1px solid var(--rule); border-radius: 14px; padding: 0.9rem 1.05rem; color: var(--ink-soft); font-size: 0.95rem; }
+    .duo-modes strong { display: block; color: var(--gold); margin-bottom: 0.2rem; }
+    .duo-note { margin-top: 1rem; font-size: 0.85rem; color: var(--ink-mute); }
+    .duo-visual { margin: 0 auto; max-width: 360px; width: 100%; }
+    .duo-frame { position: relative; border-radius: 26px; overflow: hidden; border: 1px solid var(--rule); box-shadow: 0 24px 48px rgba(0,0,0,0.45); }
+    .duo-frame::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; transform: translateY(-1px); background: linear-gradient(90deg, transparent, rgba(255,213,107,0.85) 12%, rgba(255,213,107,0.85) 88%, transparent); box-shadow: 0 0 12px rgba(255,213,107,0.55); }
+    .duo-visual figcaption { margin-top: 0.75rem; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
   </style>
 </head>
 <body>
@@ -84,7 +96,7 @@
           <a class="cta" href="https://apps.apple.com/app/id6767458601">Descargar en la App Store</a>
           <a class="chip" href="/cariocachile/rules.es.html">Cómo se juega</a>
         </div>
-        <small class="price-note">Gratis con desbloqueo opcional de $2.99 · el multijugador en línea y cercano siempre es gratis.</small>
+        <small class="price-note">Gratis con desbloqueo opcional de $2.99 · jugar en línea, unirte a la partida de un amigo y jugar cerca siempre es gratis.</small>
       </div>
       <div class="hero-visual">
         <img src="assets/hero.png" alt="Pantalla de inicio de Carioca Chile — joker con cartas en abanico" />
@@ -109,7 +121,7 @@
       <div class="features-grid">
         <div class="feature">
           <h3>Multijugador, de tres formas</h3>
-          <p>Juega en línea — mira las partidas públicas abiertas, únete con Entrar rápido o crea una sala privada. Juega <strong>cerca</strong> por Wi-Fi local, sin internet. O pasa un solo dispositivo alrededor de la mesa.</p>
+          <p>Toca <strong>Jugar en línea</strong> y la partida empieza en cuanto llega un segundo jugador — o pide que te avisemos cuando se abra una mesa y sigue con lo tuyo. Invita a tus amigos a una sala privada con un enlace. Juega <strong>cerca</strong> por Wi-Fi o Bluetooth, sin internet, o pasa un solo dispositivo alrededor de la mesa. En plena partida, manda reacciones rápidas.</p>
         </div>
         <div class="feature">
           <h3>Partida rápida</h3>
@@ -128,12 +140,12 @@
           <p>Tres misiones diarias y una Temporada mensual con recompensas exclusivas que no se compran: solo se ganan.</p>
         </div>
         <div class="feature">
-          <h3>El Entrenador</h3>
-          <p>¿Atascado? Pide una pista — te explica las reglas de la ronda o sugiere la jugada que haría un buen rival.</p>
+          <h3>El Entrenador y Deshacer</h3>
+          <p>¿Atascado? Pide una pista — te explica las reglas de la ronda o sugiere la jugada que haría un buen rival. ¿Te equivocaste jugando solo? Deshacer la revierte, incluso un descarte errado.</p>
         </div>
         <div class="feature">
           <h3>Rivales con personalidad</h3>
-          <p>Seis rivales con nombre que juegan distinto — uno caza comodines, otro acumula, otro apuesta fuerte. Aprenderás a leerlos.</p>
+          <p>Seis rivales con nombre que juegan distinto — uno caza comodines, otro acumula, otro apuesta fuerte. Toca a cualquier rival para ver su estilo, su puntaje y lo que ha bajado.</p>
         </div>
         <div class="feature">
           <h3>Reglas de la casa y Doblar</h3>
@@ -149,17 +161,33 @@
         </div>
         <div class="feature">
           <h3>Game Center</h3>
-          <p>Nueve rankings y doce logros para conseguir. Compara con tus amigos.</p>
+          <p>Nueve rankings y doce logros, dentro de la misma app — primero los de esta semana, con tus amigos al lado.</p>
         </div>
         <div class="feature">
-          <h3>Sincronización iCloud</h3>
-          <p>Estadísticas, gemas y partidas guardadas viajan contigo entre iPhone y iPad — sin necesidad de cuenta.</p>
-        </div>
-        <div class="feature">
-          <h3>Hecho para el iPhone Duo</h3>
-          <p>Desplegado, tienes la mesa completa de iPad. Medio plegado, los rivales y el mazo quedan arriba, y tu mano y los juegos bajados en la mitad plana, al alcance del dedo.</p>
+          <h3>iCloud y cuatro idiomas</h3>
+          <p>Estadísticas, gemas y partidas guardadas viajan contigo entre iPhone y iPad — sin necesidad de cuenta. En español, inglés, francés y portugués, según el idioma de tu teléfono.</p>
         </div>
       </div>
+    </section>
+
+    <section class="duo" id="iphone-duo">
+      <div class="duo-text">
+        <span class="duo-eyebrow">iPhone Duo</span>
+        <h2>Hecho para el iPhone Duo</h2>
+        <p>Carioca Chile aprovecha cada forma del nuevo iPhone plegable: cerrado, abierto o medio plegado sobre la mesa.</p>
+        <ul class="duo-modes">
+        <li><strong>Cerrado</strong>La mesa de siempre del teléfono. En la partida, la pantalla esquiva la cámara de la esquina.</li>
+        <li><strong>Abierto</strong>La pantalla interior es tan amplia que tienes la mesa completa del iPad: más espacio para los juegos bajados y cartas más grandes.</li>
+        <li><strong>Medio plegado</strong>Déjalo sobre la mesa como un portátil pequeño. Los rivales, la ronda y el mazo quedan en la mitad vertical; tu mano, los juegos bajados y los botones, en la mitad plana, al alcance del dedo.</li>
+        </ul>
+        <p class="duo-note">Pantalla completa en el iPhone Duo desde la versión 3.3 de Carioca Chile.</p>
+      </div>
+      <figure class="duo-visual">
+        <div class="duo-frame">
+          <img src="assets/duo-tabletop.jpg?v=20261010" alt="Carioca Chile en un iPhone Duo medio plegado: rivales y mazo arriba, juegos bajados y mano en la mitad plana" loading="lazy" width="720" height="1023" />
+        </div>
+        <figcaption>Medio plegado: arriba la mitad vertical, abajo la mitad plana.</figcaption>
+      </figure>
     </section>
 
     <section>
@@ -179,7 +207,7 @@
         <img src="assets/shot-app-2.jpg?v=20260808b" alt="Partida en curso" loading="lazy" width="552" height="1200" />
         <img src="assets/shot-app-3.jpg?v=20260808b" alt="Desafío Diario" loading="lazy" width="552" height="1200" />
         <img src="assets/shot-app-4.jpg?v=20260808b" alt="Tienda de Gemas" loading="lazy" width="552" height="1200" />
-        <img src="assets/shot-app-5.jpg?v=20260808b" alt="Multijugador" loading="lazy" width="552" height="1200" />
+        <img src="assets/shot-app-6.jpg?v=20261010" alt="Mesa Solo — tus rivales y las reglas de la casa" loading="lazy" width="552" height="1200" />
       </div>
     </section>
   </main>

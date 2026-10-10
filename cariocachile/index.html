@@ -202,6 +202,18 @@
     .chip-yt { gap: 0.6rem; padding: 0.7rem 1.25rem; font-size: 0.95rem; }
     .chip-yt .yt-mark { flex: 0 0 auto; }
     .video-links { text-align: center; margin: -0.25rem auto 1.75rem; }
+    /* iPhone Duo */
+    .duo { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
+    @media (min-width: 760px) { .duo { grid-template-columns: 1.15fr 1fr; gap: 3rem; } }
+    .duo-eyebrow { display: inline-block; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--rule); border-radius: 999px; padding: 0.25rem 0.7rem; margin-bottom: 0.9rem; }
+    .duo-modes { list-style: none; margin-top: 1.25rem; display: grid; gap: 0.9rem; }
+    .duo-modes li { background: var(--navy-2); border: 1px solid var(--rule); border-radius: 14px; padding: 0.9rem 1.05rem; color: var(--ink-soft); font-size: 0.95rem; }
+    .duo-modes strong { display: block; color: var(--gold); margin-bottom: 0.2rem; }
+    .duo-note { margin-top: 1rem; font-size: 0.85rem; color: var(--ink-mute); }
+    .duo-visual { margin: 0 auto; max-width: 360px; width: 100%; }
+    .duo-frame { position: relative; border-radius: 26px; overflow: hidden; border: 1px solid var(--rule); box-shadow: 0 24px 48px rgba(0,0,0,0.45); }
+    .duo-frame::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; transform: translateY(-1px); background: linear-gradient(90deg, transparent, rgba(255,213,107,0.85) 12%, rgba(255,213,107,0.85) 88%, transparent); box-shadow: 0 0 12px rgba(255,213,107,0.55); }
+    .duo-visual figcaption { margin-top: 0.75rem; text-align: center; font-size: 0.85rem; color: var(--ink-mute); }
   </style>
 </head>
 <body>
@@ -224,7 +236,7 @@
           <a class="cta" href="https://apps.apple.com/app/id6767458601">Download on the App Store</a>
           <a class="chip" href="/cariocachile/rules.html">How to play</a>
         </div>
-        <small class="price-note">Free with optional $2.99 unlock · online and nearby multiplayer always free.</small>
+        <small class="price-note">Free with optional $2.99 unlock · the online queue, joining a friend's game and nearby play are always free.</small>
       </div>
       <div class="hero-visual">
         <img src="assets/hero.png" alt="Carioca Chile splash — joker card with fanned cards" />
@@ -249,7 +261,7 @@
       <div class="features-grid">
         <div class="feature">
           <h3>Multiplayer, three ways</h3>
-          <p>Play online — browse open public games, jump in with Quick Join, or host a private room. Play <strong>nearby</strong> over local Wi-Fi with no internet at all. Or pass one device around the table.</p>
+          <p>Tap <strong>Play online</strong> and the game starts the moment a second player joins — or ask to be alerted when a table opens and go do something else. Invite friends to a private room with a link. Play <strong>nearby</strong> over Wi-Fi or Bluetooth with no internet, or pass one device around the table. Mid-game, send quick reactions.</p>
         </div>
         <div class="feature">
           <h3>Quick Play</h3>
@@ -268,12 +280,12 @@
           <p>Three daily missions and a monthly Season road with exclusive rewards you can't buy — only earn.</p>
         </div>
         <div class="feature">
-          <h3>The Coach</h3>
-          <p>Stuck? Ask for a hint — it explains the round's rules, or suggests the play a strong opponent would make.</p>
+          <h3>The Coach &amp; Undo</h3>
+          <p>Stuck? Ask for a hint — it explains the round's rules, or suggests the play a strong opponent would make. Misplayed in solo? Undo takes it back, even a wrong discard.</p>
         </div>
         <div class="feature">
           <h3>Opponents with personality</h3>
-          <p>Six named CPUs who each play differently — one hunts jokers, one hoards, one bets big. You'll learn to read them.</p>
+          <p>Six named CPUs who each play differently — one hunts jokers, one hoards, one bets big. Tap any opponent to see their style, their score and what they've laid.</p>
         </div>
         <div class="feature">
           <h3>House Rules &amp; Double Down</h3>
@@ -289,17 +301,33 @@
         </div>
         <div class="feature">
           <h3>Game Center</h3>
-          <p>Nine leaderboards and twelve achievements to chase. Friends ranked side-by-side.</p>
+          <p>Nine leaderboards and twelve achievements, right inside the app — this week's boards first, with friends ranked side by side.</p>
         </div>
         <div class="feature">
-          <h3>iCloud sync</h3>
-          <p>Stats, gems and saved games follow you across iPhone and iPad — no account required.</p>
-        </div>
-        <div class="feature">
-          <h3>Made for iPhone Duo</h3>
-          <p>Unfolded, you get the full iPad table. Half-folded, your opponents and the deck stand up top while your hand and the melds sit on the flat half, right under your fingers.</p>
+          <h3>iCloud sync, four languages</h3>
+          <p>Stats, gems and saved games follow you across iPhone and iPad — no account required. Plays in English, Spanish, French and Portuguese, following your phone's language.</p>
         </div>
       </div>
+    </section>
+
+    <section class="duo" id="iphone-duo">
+      <div class="duo-text">
+        <span class="duo-eyebrow">iPhone Duo</span>
+        <h2>Made for iPhone Duo</h2>
+        <p>Carioca Chile uses every shape of the new foldable iPhone — closed, open, or half-folded on the table.</p>
+        <ul class="duo-modes">
+        <li><strong>Closed</strong>The familiar phone table. In a game, the layout steps around the corner camera.</li>
+        <li><strong>Unfolded</strong>The inner screen is big enough for the full iPad table: more room for melds, and bigger cards.</li>
+        <li><strong>Half-folded</strong>Stand it on the table like a small laptop. Your opponents, the round and the deck sit on the upright half; your hand, the melds and the buttons lie on the flat half, right under your fingers.</li>
+        </ul>
+        <p class="duo-note">Full screen on iPhone Duo from Carioca Chile 3.3.</p>
+      </div>
+      <figure class="duo-visual">
+        <div class="duo-frame">
+          <img src="assets/duo-tabletop.jpg?v=20261010" alt="Carioca Chile on a half-folded iPhone Duo: opponents and deck on the upright half, melds and hand on the flat half" loading="lazy" width="720" height="1023" />
+        </div>
+        <figcaption>Half-folded: the upright half above the hinge, the flat half below.</figcaption>
+      </figure>
     </section>
 
     <section>
